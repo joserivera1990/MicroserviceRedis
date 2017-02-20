@@ -15,11 +15,8 @@ public class RandomInfo implements RequestHandler<Object, Object> {
     	ObjectMapper mapper = new ObjectMapper();
     	try {
 			Jedis jedis = new Jedis("redisuser.jlrgpj.0001.use1.cache.amazonaws.com", 6379);
-			Seller seller = new Seller(2, 1030583888, "PEDRO", "RIVERA", "ing@gmail.com", 2934561, 20);
-			String request = mapper.writeValueAsString(seller);
-			jedis.set("_1030583888",request);
 			saveSeller();
-			return request;
+			return "Created";
 		} catch (JsonProcessingException e1) {
 			return new Response("1", "Error in the serielization of the data");
 		} 
@@ -28,11 +25,54 @@ public class RandomInfo implements RequestHandler<Object, Object> {
     private void saveSeller() throws JsonProcessingException {
     	ObjectMapper mapper = new ObjectMapper();
     	for (int i = 1000000000; i < 1000001000; i++) {
-			Jedis jedis = new Jedis("redisuser.jlrgpj.0001.use1.cache.amazonaws.com", 6379);
-			Seller seller = new Seller(2, i, "PEDRO", "RIVERA", "ing@gmail.com", 2934561, 20);
+    		String name = getName(getRandomNumber(5));
+    		String email = "ing." + name + i + "@gmail.com";
+    		Jedis jedis = new Jedis("redisuser.jlrgpj.0001.use1.cache.amazonaws.com", 6379);
+			Seller seller = new Seller(getRandomNumber(5), i, name, getApellido(getRandomNumber(5)), email, getRandomNumber(1000000), getRandomNumberMajor(60));
 			String request = mapper.writeValueAsString(seller);
 			jedis.set("_"+i,request);
 		}
     }
-   
+    
+    public static int getRandomNumber(int maxNumber) {
+		return (int) (Math.random() * maxNumber) + 1;
+	}
+    
+    public static int getRandomNumberMajor(int maxNumber) {
+		return (int) (Math.random() * maxNumber) + 18;
+	}
+    
+    public String getName(int maxNumber) {
+		switch (maxNumber) {
+		case 1:
+			return "Karen";
+		case 2:
+			return "Sergio";
+		case 3:
+			return "Jose";
+		case 4:
+			return "Ricardo";
+		case 5:
+			return "Gabriel";
+		default:
+	        return "Dario";
+		}
+    }
+    
+    public String getApellido(int maxNumber) {
+		switch (maxNumber) {
+		case 1:
+			return "Vega";
+		case 2:
+			return "Leottau";
+		case 3:
+			return "Badillo";
+		case 4:
+			return "Mestre";
+		case 5:
+			return "Rivera";
+		default:
+	        return "Martinez";
+		}
+    }
 }

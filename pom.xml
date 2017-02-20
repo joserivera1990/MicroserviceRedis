@@ -14,7 +14,7 @@
       <version>3.8.1</version>
       <scope>test</scope>
     </dependency>
-    <dependency>
+    <!--dependency>
 	    <groupId>com.amazonaws</groupId>
 	    <artifactId>elasticache-java-cluster-client</artifactId>
 	    <version>1.0.61.0</version>
@@ -23,7 +23,7 @@
 	    <groupId>com.amazonaws</groupId>
 	    <artifactId>aws-java-sdk-elasticache</artifactId>
 	    <version>1.11.86</version>
-	</dependency>
+	</dependency-->
 	<dependency>
     	<groupId>com.amazonaws</groupId>
     	<artifactId>aws-lambda-java-core</artifactId>
@@ -48,7 +48,22 @@
     <groupId>org.json</groupId>
     <artifactId>json</artifactId>
     <version>20070829</version>
-</dependency>
+	</dependency>
+	<dependency>
+    	<groupId>org.postgresql</groupId>
+    	<artifactId>postgresql</artifactId>
+    	<version>9.4.1212.jre7</version>
+	</dependency>
+	<dependency>
+		<groupId>org.apache.kafka</groupId>
+		<artifactId>kafka-clients</artifactId>
+		<version>0.9.0.0</version>
+	</dependency>
+	<!--dependency>
+		<groupId>org.postgresql</groupId>
+		<artifactId>postgresql</artifactId>
+		<version>9.4.1211.jre7</version>
+	</dependency-->
   </dependencies>
   <properties>
    <maven.compiler.source>1.8</maven.compiler.source>
